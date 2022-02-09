@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -21,21 +22,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void showToast() {
-    setState(() {
-      Fluttertoast.showToast(
-          msg: "This is Center Short Toast",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final List<String> itemImage = [
+      'assets/img/image1.jpg',
+      'assets/img/image2.jpg',
+      'assets/img/image3.jpg'
+    ];
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(top: 30, left: 15, right: 15, bottom: 10),
@@ -53,8 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    "Home1",
-                    style: TextStyle(fontFamily: 'TroubleSide'),
+                    "Home",
+                    style: TextStyle(
+                        fontFamily: 'Times New Roman',
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 Expanded(
@@ -73,29 +69,40 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Row(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                      child: Text(
-                        "Discover",
-                        style:
-                            TextStyle(fontFamily: 'TroubleSide', fontSize: 25),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(10, 5, 0, 5),
-                      child: Text(
-                        "New Collections",
-                        style:
-                            TextStyle(fontFamily: 'TroubleSide', fontSize: 13),
-                      ),
-                    ),
-                  ],
-                ),
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  flex: 3,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.fromLTRB(15, 5, 0, 5),
+                          child: Text(
+                            "Discover",
+                            style: TextStyle(
+                                fontFamily: 'Times New Roman',
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(15, 5, 0, 5),
+                          child: Text(
+                            "New Collections",
+                            style: TextStyle(
+                                fontFamily: 'Times New Roman',
+                                fontSize: 18,
+                                color: Colors.grey),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  //margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Expanded(
+                    flex: 2,
                     child: Theme(
                       child: TextField(
                         style: TextStyle(color: Colors.grey),
@@ -111,13 +118,40 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           suffixIcon: Icon(Icons.search),
-                          hintText: "Введите логин",
+                          hintText: "Search...",
                         ),
                       ),
                       data: Theme.of(context).copyWith(
                         primaryColor: Colors.redAccent,
                       ),
                     ),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: CarouselSlider.builder(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                    ),
+                    itemCount: itemImage.length,
+                    itemBuilder: (context, itemIndex, realIndex) {
+                      return Container(
+                        margin: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width,
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(10.0), //add border radius
+                          child: Image.asset(
+                            itemImage[itemIndex],
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
