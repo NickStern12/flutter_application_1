@@ -93,29 +93,30 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                Container(
-                  width: 100,
-                  height: 150,
-                  child: Theme(
-                    child: TextField(
-                      style: TextStyle(color: Colors.grey),
-                      cursorColor: Colors.blueGrey,
-                      decoration: InputDecoration(
-                        fillColor: Color(0xFFe6e6e6),
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: Theme(
+                      child: TextField(
+                        style: TextStyle(color: Colors.grey),
+                        cursorColor: Colors.blueGrey,
+                        decoration: InputDecoration(
+                          fillColor: Color(0xFFe6e6e6),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
                           ),
+                          suffixIcon: Icon(Icons.search),
+                          hintText: "Введите логин",
                         ),
-                        suffixIcon: Icon(Icons.search),
-                        hintText: "Введите логин",
                       ),
-                    ),
-                    data: Theme.of(context).copyWith(
-                      primaryColor: Colors.redAccent,
+                      data: Theme.of(context).copyWith(
+                        primaryColor: Colors.redAccent,
+                      ),
                     ),
                   ),
                 ),
