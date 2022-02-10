@@ -22,6 +22,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var massive = ['asd', 'qwe', 'weuiohjsdnvfjkxc'];
+
   @override
   Widget build(BuildContext context) {
     final List<String> itemImage = [
@@ -141,14 +143,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemBuilder: (context, itemIndex, realIndex) {
                       return Container(
                         margin: EdgeInsets.all(10),
-                        width: MediaQuery.of(context).size.width,
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(10.0), //add border radius
-                          child: Image.asset(
-                            itemImage[itemIndex],
-                            fit: BoxFit.fill,
-                          ),
+                        width: double.infinity,
+                        child: Image.asset(
+                          itemImage[itemIndex],
+                          fit: BoxFit.fill,
                         ),
                       );
                     },
@@ -156,9 +154,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            Container(
+                height: 100,
+                child: ListView.builder(
+                    itemCount: massive.length,
+                    itemBuilder: (context, i) {
+                      return text(massive[i]);
+                    }))
           ],
         ),
       ),
+    );
+  }
+
+  Widget text(String txt) {
+    return Container(
+      color: Colors.red,
+      child: Text(txt),
     );
   }
 }
